@@ -1,47 +1,49 @@
 package com.hiberus.crudsuperheroes.service;
 
-import static org.mockito.Mockito.doNothing;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import static org.mockito.BDDMockito.given;
 
-import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
+import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
+import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
 import com.hiberus.crudsuperheroes.model.SuperHeroeEntity;
-import com.hiberus.crudsuperheroes.service.impl.SuperHeroeDeleteServiceImpl;
+import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
+import com.hiberus.crudsuperheroes.service.impl.SuperHeroeServiceImpl;
 
 @SpringBootTest
 class SuperHeroeServiceTest {
 
 	@MockBean
-	SuperHeroeDeleteServiceImpl superHeroeDeleteService;
+	SuperHeroeServiceImpl superHeroeService;
 	 
 	@Mock
 	private SuperHeroeEntity superHeroeEntity;
 	
-	@Test
-	void whenGivenId_shouldDeleteSuperHeroe_ifFound() {
-		
-		SuperHeroeEntity superHeroe = SuperHeroeEntity.builder()
-											.idSuperHeroe(1L).nombre("Calico Electronico")
-											.build();
-		
-		Mockito.doNothing().when(superHeroeDeleteService).deleteSuperHeroeById(superHeroe.getIdSuperHeroe());
-	}
+    @Mock
+    private SuperHeroeRepository superHeroeRepository;
+	
+    @Test
+    public void shouldReturnAllUsers() {
+    	
+        List<SuperHeroeEntity> users = new ArrayList();
+        
+        users.add(new SuperHeroeEntity());
 
-	@Test
-	void should_throw_exception_when_superHeroe_doesnt_exist() {
-		
-		SuperHeroeEntity superHeroe = SuperHeroeEntity.builder()
-				.idSuperHeroe(2L).nombre("Superman")
-				.build();
-		
-		Mockito.doThrow(new SuperHeroeNotFoundException(superHeroe.getIdSuperHeroe())).when(superHeroeDeleteService).deleteSuperHeroeById(superHeroe.getIdSuperHeroe());
-		
-		
-	}
+        given(superHeroeRepository.findAll()).willReturn(users);
+
+        List<SuperHeroeResponse> expected = superHeroeService.getAllSuperHeroes();
+
+        assertEquals(expected, users);
+        verify(superHeroeRepository).findAll();
+    }
 	
 }

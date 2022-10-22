@@ -1,4 +1,4 @@
-package com.hiberus.crudsuperheroes;
+package com.hiberus.crudsuperheroes.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
