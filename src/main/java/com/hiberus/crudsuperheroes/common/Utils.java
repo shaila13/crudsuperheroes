@@ -1,10 +1,23 @@
 package com.hiberus.crudsuperheroes.common;
 
 import java.util.Collection;
-//import org.springframework.data.rest.core.util.Supplier;
 import java.util.Objects;
-//import com.google.gson.Gson;
+import java.util.function.Supplier;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Clase de utilidades
+ *
+ * @author Shaila
+ *
+ */
+@Slf4j
+@UtilityClass
 public class Utils {
 
 
@@ -38,10 +51,15 @@ public class Utils {
 	 * @param object Objeto de entrada
 	 * @return El json generado
 	 */
-//	public static String toJson(Object object) {
-//		Gson gson = new Gson();
-//		return gson.toJson(object);
-//	}
+	public static String toJson(Object object) {
+		String gsonString = null;
+		try{
+		gsonString = new GsonBuilder().setPrettyPrinting().create().toJson(object);
+	  }catch(JsonIOException err){
+          log.error("JsonIOException : " + err.toString());
+      }
+		return gsonString;
+	}
 
 
 
@@ -70,13 +88,13 @@ public class Utils {
 	 * @param supplier
 	 * @return
 	 */
-//	public static <T> String nullGuardString(Supplier<T> supplier) {
-//		try {
-//			return (String) supplier.get();
-//		} catch (NullPointerException ignored) {
-//			return null;
-//		}
-//	}
+	public static <T> String nullGuardString(Supplier<T> supplier) {
+		try {
+			return (String) supplier.get();
+		} catch (NullPointerException ignored) {
+			return null;
+		}
+	}
 
 	/**
 	 * Accessos a get en objetos con proteccion null pointer
@@ -87,13 +105,13 @@ public class Utils {
 	 * @param supplier
 	 * @return
 	 */
-//	public static <T> T nullGuard(Supplier<T> supplier) {
-//		try {
-//			return supplier.get();
-//		} catch (NullPointerException ignored) {
-//			return null;
-//		}
-//	}
+	public static <T> T nullGuard(Supplier<T> supplier) {
+		try {
+			return supplier.get();
+		} catch (NullPointerException ignored) {
+			return null;
+		}
+	}
 
 	
 	/**

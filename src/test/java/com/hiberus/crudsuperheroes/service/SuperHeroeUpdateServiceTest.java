@@ -14,7 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
 import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
-import com.hiberus.crudsuperheroes.model.SuperHeroeEntity;
+import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.impl.SuperHeroeUpdateServiceImpl;
 
@@ -25,7 +25,7 @@ class SuperHeroeUpdateServiceTest {
 	SuperHeroeUpdateServiceImpl superHeroeUpdateService;
 	 
 	@Mock
-	private SuperHeroeEntity superHeroeEntity;
+	private SuperHeroe superHeroeEntity;
 	
     @Mock
     private SuperHeroeRepository superHeroeRepository;
@@ -33,7 +33,7 @@ class SuperHeroeUpdateServiceTest {
 	@Test
 	public void updateUserWhenPutUser() throws Exception {
  
-		SuperHeroeEntity superHeroe = SuperHeroeEntity.builder()
+		SuperHeroe superHeroe = SuperHeroe.builder()
 				.idSuperHeroe(1L).nombre("Calico Electronico").superPoder("No cuenta con ningun superpoder")
 				.build();
 		
@@ -50,7 +50,7 @@ class SuperHeroeUpdateServiceTest {
 	@Test
 	public void shouldThrowExceptionWhenUserDoesntExist() throws Exception {
  
-		SuperHeroeEntity superHeroe = SuperHeroeEntity.builder()
+		SuperHeroe superHeroe = SuperHeroe.builder()
 				.idSuperHeroe(99L).nombre("Test Name").superPoder("Test SuperPower")
 				.build();
 		
