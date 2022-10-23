@@ -1,7 +1,5 @@
 package com.hiberus.crudsuperheroes.controler;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
+import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
@@ -32,7 +31,7 @@ public class SuperHeroeController {
 	 private SuperHeroeUpdateService superHeroeUpdateService;
 	 
 	  @GetMapping("/get-superheroes-list")
-	  public ResponseEntity<List<SuperHeroeDto>> getAllSuperHeroes() {
+	  public ResponseEntity<SuperHeroeResponse> getAllSuperHeroes() {
 	    return ResponseEntity.ok(superHeroeService.getAllSuperHeroes());
 	  }
 
@@ -41,11 +40,11 @@ public class SuperHeroeController {
 	    return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
 	  }
 	  @GetMapping("/get-detail-superheroe-by-param/{param}")
-	  public ResponseEntity<List<SuperHeroeDto>> getSuperHeroesByParam(@PathVariable("param") String param) {
+	  public ResponseEntity<SuperHeroeResponse> getSuperHeroesByParam(@PathVariable("param") String param) {
 	    return ResponseEntity.ok(superHeroeService.getSuperHeroesByParam(param));
 	  }
 	  @PutMapping("/update-superheroe/{id}")
-	  public ResponseEntity<SuperHeroeDto> updateSuperHeroes(@PathVariable("id") Long id, @RequestBody SuperHeroeRequest superHeroeRequest) {
+	  public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id, @RequestBody SuperHeroeRequest superHeroeRequest) {
 	    return ResponseEntity.ok(superHeroeUpdateService.updateSuperHeroe(id, superHeroeRequest));
 	  }
 

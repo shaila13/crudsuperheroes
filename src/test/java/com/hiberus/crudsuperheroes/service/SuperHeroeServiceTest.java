@@ -34,15 +34,15 @@ class SuperHeroeServiceTest {
     @Test
     public void shouldReturnAllUsers() {
     	
-        List<SuperHeroeEntity> users = new ArrayList();
+        List<SuperHeroeEntity> superHeroe = new ArrayList<>();
         
-        users.add(new SuperHeroeEntity());
+        superHeroe.add(new SuperHeroeEntity());
 
-        given(superHeroeRepository.findAll()).willReturn(users);
+        given(superHeroeRepository.findAll()).willReturn(superHeroe);
 
-        List<SuperHeroeResponse> expected = superHeroeService.getAllSuperHeroes();
+        SuperHeroeResponse expected = superHeroeService.getAllSuperHeroes();
 
-        assertEquals(expected, users);
+        assertEquals(expected, superHeroe);
         verify(superHeroeRepository).findAll();
     }
 	
