@@ -23,7 +23,7 @@ public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService{
 				
 		SuperHeroe result = superHeroeRepository.findById(id).orElseThrow(() -> new SuperHeroeNotFoundException(id));
 		
-		log.info("[SuperHeroeDeleteServiceImpl] the super hero is going to be erased -> {}" + result.getNombre());
+		log.info("[SuperHeroeDeleteServiceImpl] the super hero is going to be erased -> " + result.getNombre());
 		
 		superHeroeRepository.deleteById(id);
 		

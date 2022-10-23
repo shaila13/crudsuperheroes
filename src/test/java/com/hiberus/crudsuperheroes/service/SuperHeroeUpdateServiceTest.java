@@ -42,7 +42,7 @@ class SuperHeroeUpdateServiceTest {
         given(superHeroeRepository.findById(superHeroe.getIdSuperHeroe())).willReturn(Optional.of(superHeroe));
         superHeroeUpdateService.updateSuperHeroe(superHeroe.getIdSuperHeroe(), newSuperHeroe);
 
-        verify(superHeroeRepository).save(superHeroe);
+        verify(superHeroeRepository).saveAndFlush(superHeroe);
         verify(superHeroeRepository).findById(superHeroe.getIdSuperHeroe());
  
 	}

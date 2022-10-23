@@ -1,4 +1,4 @@
-package com.hiberus.crudsuperheroes.controler;
+package com.hiberus.crudsuperheroes.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +51,7 @@ public class SuperHeroeController {
 	  }
 
 	  @DeleteMapping("/delete-superheroe-by-id/{id}")
-	  public ResponseEntity<Void> deleteSuperHeroe(@PathVariable("id") Long id) {
+	  public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) {
 		  superHeroeDeleteService.deleteSuperHeroeById(id);
 	    return ResponseEntity.ok().build();
 	  }
