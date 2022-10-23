@@ -20,7 +20,7 @@ class SuperHeroeDeleteServiceTest {
 	SuperHeroeDeleteServiceImpl superHeroeDeleteService;
 	 
 	@Mock
-	private SuperHeroe superHeroeEntity;
+	private SuperHeroe superHeroe;
 	
     @Mock
     private SuperHeroeRepository superHeroeRepository;
