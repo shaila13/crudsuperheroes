@@ -13,9 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.BDDMockito.given;
 
-import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
-import com.hiberus.crudsuperheroes.model.SuperHeroeEntity;
+import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.impl.SuperHeroeServiceImpl;
 
@@ -26,7 +25,7 @@ class SuperHeroeServiceTest {
 	SuperHeroeServiceImpl superHeroeService;
 	 
 	@Mock
-	private SuperHeroeEntity superHeroeEntity;
+	private SuperHeroe superHeroeEntity;
 	
     @Mock
     private SuperHeroeRepository superHeroeRepository;
@@ -34,9 +33,9 @@ class SuperHeroeServiceTest {
     @Test
     public void shouldReturnAllUsers() {
     	
-        List<SuperHeroeEntity> superHeroe = new ArrayList<>();
+        List<SuperHeroe> superHeroe = new ArrayList<>();
         
-        superHeroe.add(new SuperHeroeEntity());
+        superHeroe.add(new SuperHeroe());
 
         given(superHeroeRepository.findAll()).willReturn(superHeroe);
 

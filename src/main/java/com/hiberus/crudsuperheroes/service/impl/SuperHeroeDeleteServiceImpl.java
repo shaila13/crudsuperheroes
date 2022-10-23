@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
-import com.hiberus.crudsuperheroes.model.SuperHeroeEntity;
+import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
 
@@ -20,12 +20,10 @@ public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService{
 
 	@Override
 	public void deleteSuperHeroeById(Long id) {
+				
+		SuperHeroe result = superHeroeRepository.findById(id).orElseThrow(() -> new SuperHeroeNotFoundException(id));
 		
-		log.info("[SuperHeroeDeleteServiceImpl] deleteSuperHeroeById -> INIT");
-		
-		SuperHeroeEntity result = superHeroeRepository.findById(id).orElseThrow(() -> new SuperHeroeNotFoundException(id));
-		
-		log.info("[SuperHeroeDeleteServiceImpl] se va a proceder a borrar al super heroe -> {}" + result.getNombre());
+		log.info("[SuperHeroeDeleteServiceImpl] the super hero is going to be erased -> {}" + result.getNombre());
 		
 		superHeroeRepository.deleteById(id);
 		

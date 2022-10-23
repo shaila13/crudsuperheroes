@@ -1,6 +1,5 @@
 package com.hiberus.crudsuperheroes.service;
 
-import java.util.List;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
@@ -18,6 +17,7 @@ public interface SuperHeroeService {
 	 * Returns a superheroe by id.
 	 * @param id
 	 * @return SuperHeroeDto
+	 * @throws Exception
 	 */
 	SuperHeroeDto getSuperHeroesById(Long id);
 

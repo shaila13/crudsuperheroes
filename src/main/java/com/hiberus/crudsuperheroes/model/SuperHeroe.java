@@ -24,9 +24,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Table(name = "SUPER_HERO")
 @Entity
-@Table(name = "BD_SUPER_HEROE")
-public class SuperHeroeEntity implements Serializable {
+public class SuperHeroe implements Serializable {
 
 	static final long serialVersionUID = 1L;
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;
+import com.hiberus.crudsuperheroes.common.Utils;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
@@ -22,27 +22,29 @@ import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
 public class SuperHeroeController {
 
 	 @Autowired
-	 private SuperHeroeService superHeroeService;
+	 private SuperHeroeService  superHeroeService;
 	 
 	 @Autowired
 	 private SuperHeroeDeleteService superHeroeDeleteService;
 	 
 	 @Autowired
 	 private SuperHeroeUpdateService superHeroeUpdateService;
+
 	 
 	  @GetMapping("/get-superheroes-list")
-	  public ResponseEntity<SuperHeroeResponse> getAllSuperHeroes() {
-	    return ResponseEntity.ok(superHeroeService.getAllSuperHeroes());
+	  public ResponseEntity<String> getAllSuperHeroes() {
+	    return ResponseEntity.ok(Utils.toJson(superHeroeService.getAllSuperHeroes()));
 	  }
 
 	  @GetMapping("/get-detail-superheroes-by-id/{id}")
-	  public ResponseEntity<SuperHeroeDto> getSuperHeroesById(@PathVariable("id") Long id) {
-	    return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
+	  public ResponseEntity<String> getSuperHeroesById(@PathVariable("id") Long id) {
+	    return ResponseEntity.ok(Utils.toJson(superHeroeService.getSuperHeroesById(id)));
 	  }
 	  @GetMapping("/get-detail-superheroe-by-param/{param}")
-	  public ResponseEntity<SuperHeroeResponse> getSuperHeroesByParam(@PathVariable("param") String param) {
-	    return ResponseEntity.ok(superHeroeService.getSuperHeroesByParam(param));
+	  public ResponseEntity<String> getSuperHeroesByParam(@PathVariable("param") String param) {
+	    return ResponseEntity.ok(Utils.toJson(superHeroeService.getSuperHeroesByParam(param)));
 	  }
+	  
 	  @PutMapping("/update-superheroe/{id}")
 	  public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id, @RequestBody SuperHeroeRequest superHeroeRequest) {
 	    return ResponseEntity.ok(superHeroeUpdateService.updateSuperHeroe(id, superHeroeRequest));

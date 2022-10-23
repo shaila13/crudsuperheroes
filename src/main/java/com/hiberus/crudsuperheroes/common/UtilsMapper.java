@@ -5,9 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;
-import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
-import com.hiberus.crudsuperheroes.model.SuperHeroeEntity;
+import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;import com.hiberus.crudsuperheroes.model.SuperHeroe;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +21,7 @@ public class UtilsMapper {
 	 * @return
 	 * 
 	 */
-	public List<SuperHeroeDto> superHeroeEntitiesToDtos(List<SuperHeroeEntity> entities) {
+	public List<SuperHeroeDto> superHeroeEntitiesToDtos(List<SuperHeroe> entities) {
 		return entities.stream().map(this::superHeroeEntityToDto).collect(Collectors.toList());
 	}
 	
@@ -34,9 +32,7 @@ public class UtilsMapper {
 	 * @return
 	 * 
 	 */
-	public SuperHeroeDto superHeroeEntityToDto(SuperHeroeEntity entity) {
- // .orElseThrow(() -> new Exception("Error en el Mappeo - superHeroeEntityToDto"))
-				
+	public SuperHeroeDto superHeroeEntityToDto(SuperHeroe entity) {				
 		return SuperHeroeDto.builder()
 				.idSuperHeroe(entity.getIdSuperHeroe())
 				.nombre(entity.getNombre())

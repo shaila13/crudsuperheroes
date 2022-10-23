@@ -8,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
-import com.hiberus.crudsuperheroes.model.SuperHeroeEntity;
+
+import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.impl.SuperHeroeDeleteServiceImpl;
 
@@ -19,7 +20,7 @@ class SuperHeroeDeleteServiceTest {
 	SuperHeroeDeleteServiceImpl superHeroeDeleteService;
 	 
 	@Mock
-	private SuperHeroeEntity superHeroeEntity;
+	private SuperHeroe superHeroeEntity;
 	
     @Mock
     private SuperHeroeRepository superHeroeRepository;
@@ -27,7 +28,7 @@ class SuperHeroeDeleteServiceTest {
 	@Test
 	void whenGivenIdShouldDeleteSuperHeroeIfFound() {
 		
-		SuperHeroeEntity superHeroe = SuperHeroeEntity.builder()
+		SuperHeroe superHeroe = SuperHeroe.builder()
 											.idSuperHeroe(1L).nombre("Calico Electronico")
 											.build();
 		
@@ -37,7 +38,7 @@ class SuperHeroeDeleteServiceTest {
 	@Test
 	void shouldThrowExceptionWhenSuperHeroeDoesntExist() {
 		
-		SuperHeroeEntity superHeroe = SuperHeroeEntity.builder()
+		SuperHeroe superHeroe = SuperHeroe.builder()
 				.idSuperHeroe(2L).nombre("Superman")
 				.build();
 		
