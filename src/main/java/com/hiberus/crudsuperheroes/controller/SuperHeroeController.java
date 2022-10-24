@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hiberus.crudsuperheroes.common.Utils;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
+import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
@@ -46,7 +47,7 @@ public class SuperHeroeController {
 	  }
 	  
 	  @PutMapping("/update-superheroe/{id}")
-	  public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id, @RequestBody SuperHeroeRequest superHeroeRequest) {
+	  public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id, @RequestBody SuperHeroeRequest superHeroeRequest) throws ValidationException {
 	    return ResponseEntity.ok(superHeroeUpdateService.updateSuperHeroe(id, superHeroeRequest));
 	  }
 

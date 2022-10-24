@@ -2,6 +2,7 @@ package com.hiberus.crudsuperheroes.service;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
+import com.hiberus.crudsuperheroes.exception.ValidationException;
 
 
 public interface SuperHeroeUpdateService {
@@ -12,7 +13,8 @@ public interface SuperHeroeUpdateService {
 	 * @param id
 	 * @param superHeroeRequest
 	 * @return SuperHeroeResponse
+	 * @throws ValidationException 
 	 */
-	boolean updateSuperHeroe(Long id, SuperHeroeRequest superHeroeRequest);
+	boolean updateSuperHeroe(Long id, SuperHeroeRequest superHeroeRequest) throws ValidationException;
 
 }
