@@ -6,12 +6,7 @@ public abstract class ConstantsError {
 
 	}
 
-
-
 	public static final String COD_RESP_ERROR_VALIDACION = "950";
-	
-
 	public static final String COD_RESP_ERROR_GENERICO = "Ha habido un error generico al mappear los campos.";
-   
 
 }

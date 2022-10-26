@@ -1,6 +1,5 @@
 package com.hiberus.crudsuperheroes.service.impl;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,30 +14,27 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService{
-	
+public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService {
+
 	@Autowired
 	SuperHeroeRepository superHeroeRepository;
 
 	@Autowired
 	IValidarDatosService validarDatos;
-	
+
 	@Override
 	public void deleteSuperHeroeById(Long id) {
-				
+
 		try {
 			validarDatos.validarIdSuperHeroe(id);
 		} catch (ValidationException e) {
-			log.error("Los datos son obligatorios.",e.getMessage());
-	
-		}	
+			log.error("Los datos son obligatorios.", e.getMessage());
+
+		}
 		SuperHeroe result = superHeroeRepository.findById(id).orElseThrow(() -> new SuperHeroeNotFoundException(id));
-		
-		log.info("El super heroe " + result.getNombre()+" va a ser borrado de Base de Datos.");
-		
+
+		log.info("El super heroe " + result.getNombre() + " va a ser borrado de Base de Datos.");
+
 		superHeroeRepository.deleteById(id);
-		
 	}
-
-
 }

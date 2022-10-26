@@ -1,7 +1,7 @@
 package com.hiberus.crudsuperheroes.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +43,7 @@ public class SuperHeroe implements Serializable {
 	String superPoder;
 
 	@Column(name = "CREATION_DATE")
-	Date creationDate;
+	LocalDate creationDate;
 	
 	
 }

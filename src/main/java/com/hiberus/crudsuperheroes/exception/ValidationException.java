@@ -9,13 +9,15 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ValidationException extends Exception {
 
-	/**Numero Serie*/
+	/** Numero Serie */
 	private static final long serialVersionUID = 3950521534892696583L;
 
 	/** Codigo de mensaje */
 	private String codMensaje;
-	
 	private String descMensaje;
 	
-	
+	public ValidationException() {
+		super("Los datos son obligatorios.");
+	}
+
 }
