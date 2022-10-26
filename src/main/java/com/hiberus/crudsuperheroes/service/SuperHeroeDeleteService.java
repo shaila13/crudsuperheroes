@@ -4,8 +4,9 @@ public interface SuperHeroeDeleteService {
 
 	/**
 	 * Delete a superheroes by id.
+	 * 
 	 * @param id
-	 * @return 
+	 * @return
 	 */
 	void deleteSuperHeroeById(Long id);
 

@@ -16,12 +16,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SuperHeroeDto {
-	
-	 
-		Long idSuperHeroe;
 
-		String nombre;
-	 
-		String superPoder;
+	Long idSuperHeroe;
+	String nombre;
+	String superPoder;
 
 }

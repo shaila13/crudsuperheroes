@@ -21,5 +21,5 @@ import lombok.experimental.FieldDefaults;
 public class SuperHeroeResponse {
 
 	List<SuperHeroeDto> superHeroList = new ArrayList<>();
-	  
+
 }

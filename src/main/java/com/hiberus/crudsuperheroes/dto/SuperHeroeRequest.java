@@ -1,6 +1,5 @@
 package com.hiberus.crudsuperheroes.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AccessLevel;
@@ -19,7 +18,6 @@ import lombok.experimental.FieldDefaults;
 public class SuperHeroeRequest {
 
 	String nombre;
- 
 	String superPoder;
-	  
+
 }

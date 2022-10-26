@@ -6,6 +6,4 @@ import com.hiberus.crudsuperheroes.model.SuperHeroe;
 
 public interface SuperHeroeRepository extends JpaRepository<SuperHeroe, Long>{
 	
-	
-
 }

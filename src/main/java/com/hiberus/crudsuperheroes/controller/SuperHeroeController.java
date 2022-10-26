@@ -19,42 +19,43 @@ import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
 
 @RestController
-@RequestMapping("/api/superheroes")
+@RequestMapping("/api/v1")
 public class SuperHeroeController {
 
-	 @Autowired
-	 private SuperHeroeService  superHeroeService;
-	 
-	 @Autowired
-	 private SuperHeroeDeleteService superHeroeDeleteService;
-	 
-	 @Autowired
-	 private SuperHeroeUpdateService superHeroeUpdateService;
+	@Autowired
+	private SuperHeroeService superHeroeService;
 
-	 
-	  @GetMapping("/get-superheroes-list")
-	  public ResponseEntity<String> getAllSuperHeroes() {
-	    return ResponseEntity.ok(Utils.toJson(superHeroeService.getAllSuperHeroes()));
-	  }
+	@Autowired
+	private SuperHeroeDeleteService superHeroeDeleteService;
 
-	  @GetMapping("/get-detail-superheroes-by-id/{id}")
-	  public ResponseEntity<String> getSuperHeroesById(@PathVariable("id") Long id) {
-	    return ResponseEntity.ok(Utils.toJson(superHeroeService.getSuperHeroesById(id)));
-	  }
-	  @GetMapping("/get-detail-superheroe-by-param/{param}")
-	  public ResponseEntity<String> getSuperHeroesByParam(@PathVariable("param") String param) {
-	    return ResponseEntity.ok(Utils.toJson(superHeroeService.getSuperHeroesByParam(param)));
-	  }
-	  
-	  @PutMapping("/update-superheroe/{id}")
-	  public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id, @RequestBody SuperHeroeRequest superHeroeRequest) throws ValidationException {
-	    return ResponseEntity.ok(superHeroeUpdateService.updateSuperHeroe(id, superHeroeRequest));
-	  }
+	@Autowired
+	private SuperHeroeUpdateService superHeroeUpdateService;
 
-	  @DeleteMapping("/delete-superheroe-by-id/{id}")
-	  public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) {
-		  superHeroeDeleteService.deleteSuperHeroeById(id);
-	    return ResponseEntity.ok().build();
-	  }
-	
+	@GetMapping("/superheroes")
+	public ResponseEntity<SuperHeroeResponse> getAllSuperHeroes() {
+		return ResponseEntity.ok(superHeroeService.getAllSuperHeroes());
+	}
+
+	@GetMapping("/superheroe/{id}")
+	public ResponseEntity<SuperHeroeResponse> getSuperHeroesById(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
+	}
+
+	@GetMapping("/superheroes/{param}")
+	public ResponseEntity<SuperHeroeResponse> getSuperHeroesByParam(@PathVariable("param") String param) {
+		return ResponseEntity.ok(superHeroeService.getSuperHeroesByParam(param));
+	}
+
+	@PutMapping("/superheroe/{id}")
+	public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id,
+			@RequestBody SuperHeroeRequest superHeroeRequest) throws ValidationException {
+		return ResponseEntity.ok(superHeroeUpdateService.updateSuperHeroe(id, superHeroeRequest));
+	}
+
+	@DeleteMapping("/superheroe/{id}")
+	public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) {
+		superHeroeDeleteService.deleteSuperHeroeById(id);
+		return ResponseEntity.ok().build();
+	}
+
 }

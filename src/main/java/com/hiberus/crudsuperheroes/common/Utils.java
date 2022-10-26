@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 
@@ -20,8 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @UtilityClass
 public class Utils {
 
-
-	
 	/**
 	 * Averigua si una cadena es vacía o nula
 	 *
@@ -29,20 +29,7 @@ public class Utils {
 	 * @return true si la cadena es vacia o nula en caso contrario devuelve false
 	 */
 	public static boolean isNullOrEmpty(String aData) {
-
 		return (aData == null || aData.length() == 0);
-
-	}
-
-	/**
-	 * Get Method Name
-	 *
-	 * @return method name
-	 */
-	public static String getCurrentMethodName() {
-
-		final StackTraceElement e = Thread.currentThread().getStackTrace()[2];
-		return e.getMethodName();
 	}
 
 	/**
@@ -53,36 +40,17 @@ public class Utils {
 	 */
 	public static String toJson(Object object) {
 		String gsonString = null;
-		try{
-		gsonString = new GsonBuilder().setPrettyPrinting().create().toJson(object);
-	  }catch(JsonIOException err){
-          log.error("JsonIOException : " + err.toString());
-      }
-		return gsonString;
-	}
-
-
-
-	/**
-	 * Return object valueIfNull if object is null
-	 *
-	 * @param object
-	 * @param valueIfNull
-	 * @return
-	 */
-	public static <T> T valueIfNull(final T object, final T valueIfNull) {
-
-		if (object == null) {
-			return valueIfNull;
-		} else {
-			return object;
+		try {
+			gsonString = new GsonBuilder().setPrettyPrinting().create().toJson(object);
+		} catch (JsonIOException err) {
+			log.error("JsonIOException : " + err.toString());
 		}
+		return gsonString;
 	}
 
 	/**
 	 * Accessos a get en objetos con proteccion null pointer
 	 * 
-	 * USO: nullGuard(() -> contract.getContactInfo().getPosition())
 	 * 
 	 * @param <T>
 	 * @param supplier
@@ -99,8 +67,6 @@ public class Utils {
 	/**
 	 * Accessos a get en objetos con proteccion null pointer
 	 *
-	 * USO: nullGuard(() -> contract.getContactInfo().getPosition())
-	 *
 	 * @param <T>
 	 * @param supplier
 	 * @return
@@ -113,22 +79,22 @@ public class Utils {
 		}
 	}
 
-	
 	/**
-	 * Null-safe check if the specified collection is empty or null.
+	 * Comprueba que una lista sea nula o vacia.
 	 * <p>
-	 * Null returns true.
+	 * Null devuelve true.
 	 * 
-	 * @param coll the collection to check, may be null
-	 * @return true if empty or null
-	 * @since Commons Collections 3.2
+	 * @param lista a comprobar
+	 * @return true si es vacia o nula
 	 */
 	public static boolean isEmptyOrNullList(Collection coll) {
 		return (coll == null || coll.isEmpty());
 	}
 
 	/**
-	 * Compara 2 objetos y devuelve trueVal si son iguales o falseVal en caso contrario
+	 * Compara 2 objetos y devuelve trueVal si son iguales o falseVal en caso
+	 * contrario
+	 * 
 	 * @param <T>
 	 * @param <U>
 	 * @param obj1
@@ -137,9 +103,24 @@ public class Utils {
 	 * @param falseVal
 	 * @return
 	 */
-	public static <T,U> T ifEquals(U obj1, U obj2, T trueVal, T falseVal) {
-		return (Objects.equals(obj1, obj2)?trueVal:falseVal);
-	}   
+	public static <T, U> T ifEquals(U obj1, U obj2, T trueVal, T falseVal) {
+		return (Objects.equals(obj1, obj2) ? trueVal : falseVal);
+	}
 
-	
+	/**
+	 * Metodo para convertir un objeto en un json
+	 * 
+	 * @param object
+	 * @return String
+	 */
+	public static String jsonInString(Object object) {
+		String jsonInString = null;
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			jsonInString = mapper.writeValueAsString(object);
+		} catch (JsonProcessingException err) {
+			log.error("JsonIOException : " + err.toString());
+		}
+		return jsonInString;
+	}
 }
