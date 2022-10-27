@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Utils {
 
 	/**
-	 * Averigua si una cadena es vacía o nula
+	 * Averigua si una cadena es vacia o nula
 	 *
 	 * @param aData cadena a explorar
 	 * @return true si la cadena es vacia o nula en caso contrario devuelve false
