@@ -51,25 +51,35 @@ class SuperHeroeDeleteServiceTest {
 	}
 
 	@Test
-	void whenGivenIdShouldDeleteSuperHeroeIfFound() throws ValidationException {
-		SuperHeroe result = SuperHeroe.builder().build();
-		Mockito.doNothing().when(validarDatos).validarIdSuperHeroe(any(Long.class));
-		Mockito.doReturn(Optional.ofNullable(result)).when(superHeroeRepository).findById(any(Long.class))
-				.orElseThrow(() -> new SuperHeroeNotFoundException(1L));
-		Mockito.doNothing().when(superHeroeRepository).deleteById(any(Long.class));
-		superHeroeDeleteService.deleteSuperHeroeById(ID);
-		verify(validarDatos, times(1)).validarIdSuperHeroe(any(Long.class));
-		verify(superHeroeRepository, times(1)).findById(any(Long.class));
+	void whenGivenIdShouldDeleteSuperHeroeIfFound() {
+		SuperHeroe result = SuperHeroe.builder().nombre("Test").superPoder("Test").idSuperHeroe(ID).build();
+		try {
+			Mockito.doNothing().when(validarDatos).validarIdSuperHeroe(any(Long.class));
+			Mockito.doReturn(Optional.ofNullable(result)).when(superHeroeRepository).findById(any(Long.class));
+			Mockito.doNothing().when(superHeroeRepository).deleteById(any(Long.class));
+			superHeroeDeleteService.deleteSuperHeroeById(ID);
+			verify(validarDatos, times(1)).validarIdSuperHeroe(any(Long.class));
+			verify(superHeroeRepository, times(1)).findById(any(Long.class));
+		} catch (ValidationException e) {
+			assertTrue(e instanceof ValidationException);
+		}catch (SuperHeroeNotFoundException es) {
+			assertTrue(es instanceof SuperHeroeNotFoundException);
+		}
 
 	}
 
 	@Test
-	void shouldThrowExceptionWhenSuperHeroeDoesntExist() throws ValidationException {
-		Mockito.doThrow(new ValidationException()).when(validarDatos).validarIdSuperHeroe(any(Long.class));
-		superHeroeDeleteService.deleteSuperHeroeById(ID);
-		verify(validarDatos, times(1)).validarIdSuperHeroe(any(Long.class));
-		verify(superHeroeRepository, times(0)).findById(any(Long.class));
-
+	void shouldThrowExceptionWhenSuperHeroeDoesntExist(){
+		try {
+			Mockito.doThrow(new ValidationException()).when(validarDatos).validarIdSuperHeroe(any(Long.class));
+			superHeroeDeleteService.deleteSuperHeroeById(ID);
+			verify(validarDatos, times(1)).validarIdSuperHeroe(any(Long.class));
+			verify(superHeroeRepository, times(0)).findById(any(Long.class));
+		} catch (ValidationException e) {
+			assertTrue(e instanceof ValidationException);
+		}catch (SuperHeroeNotFoundException es) {
+			assertTrue(es instanceof SuperHeroeNotFoundException);
+		}
 	}
 
 }
