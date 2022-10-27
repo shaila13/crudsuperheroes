@@ -1,4 +1,4 @@
-package com.hiberus.crudsuperheroes.common;
+package com.hiberus.crudsuperheroes.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

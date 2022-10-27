@@ -23,8 +23,8 @@ public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService {
 	IValidarDatosService validarDatos;
 
 	@Override
-	public void deleteSuperHeroeById(Long id) {
-
+	public String deleteSuperHeroeById(Long id) {
+		String mesajeDetele;
 		try {
 			validarDatos.validarIdSuperHeroe(id);
 		} catch (ValidationException e) {
@@ -36,5 +36,7 @@ public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService {
 		log.info("El super heroe " + result.getNombre() + " va a ser borrado de Base de Datos.");
 
 		superHeroeRepository.deleteById(id);
+		mesajeDetele = "El super heroe " + result.getNombre() + " ha sido borrado de Base de Datos.";
+		return mesajeDetele;
 	}
 }
