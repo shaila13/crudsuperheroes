@@ -8,6 +8,6 @@ public interface SuperHeroeDeleteService {
 	 * @param id
 	 * @return
 	 */
-	void deleteSuperHeroeById(Long id);
+	String deleteSuperHeroeById(Long id);
 
 }
