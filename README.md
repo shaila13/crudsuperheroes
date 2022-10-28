@@ -31,9 +31,9 @@ Eclipse
     -Dspring.devtools.restart.enabled=false
     
 ## Configurar conexión de Spring Boot con H2
-    En application.properties
-    
+  
     ```bash
+        En application.properties
         server.port: 8090
 
         spring.application.name: jpastreamer-example
