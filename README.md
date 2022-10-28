@@ -32,7 +32,6 @@ Eclipse
     
 ## Configurar conexión de Spring Boot con H2
   
-    ```bash
         En application.properties
         server.port: 8090
 
@@ -63,7 +62,7 @@ Eclipse
         logging:
           level:
             root: DEBUG
-            ```
+
             En build.gradle
                 runtimeOnly 'com.h2database:h2'
             En \src\main\resources
