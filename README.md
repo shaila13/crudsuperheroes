@@ -34,37 +34,37 @@ Eclipse
     En application.properties
     
     ```bash
-server.port: 8090
+        server.port: 8090
 
-spring.application.name: jpastreamer-example
-spring.datasource.url=jdbc:h2:file:/data/refactorizando/h2
-#spring.datasource.url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
-spring.datasource.url: jdbc:h2:mem:testdb
-spring.jpa.defer-datasource-initialization=true
-spring.datasource.driverClassName: org.h2.Driver
-spring.datasource.username: sa
-spring.datasource.password: password
-spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-spring.h2.console.enabled: true
-spring.h2.console.path=/h2-console
+        spring.application.name: jpastreamer-example
+        spring.datasource.url=jdbc:h2:file:/data/refactorizando/h2
+        #spring.datasource.url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+        spring.datasource.url: jdbc:h2:mem:testdb
+        spring.jpa.defer-datasource-initialization=true
+        spring.datasource.driverClassName: org.h2.Driver
+        spring.datasource.username: sa
+        spring.datasource.password: password
+        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+        spring.h2.console.enabled: true
+        spring.h2.console.path=/h2-console
 
-spring.jpa.show-sql: true
-spring.jpa.properties.hibernate.format_sql: true
+        spring.jpa.show-sql: true
+        spring.jpa.properties.hibernate.format_sql: true
 
-spring:
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-        enable_lazy_load_no_trans: true
+        spring:
+          jpa:
+            database-platform: org.hibernate.dialect.H2Dialect
+            properties:
+              hibernate:
+                show_sql: true
+                format_sql: true
+                enable_lazy_load_no_trans: true
 
-logging:
-  level:
-    root: DEBUG
-    ```
-    En build.gradle
-        runtimeOnly 'com.h2database:h2'
-    En \src\main\resources
-        En esta ruta tenemos el script data.sql con los inserts necesarios para tener datos en la BBDD. Se ejecutará automáticamente al arrancar el servicio.
+        logging:
+          level:
+            root: DEBUG
+            ```
+            En build.gradle
+                runtimeOnly 'com.h2database:h2'
+            En \src\main\resources
+                En esta ruta tenemos el script data.sql con los inserts necesarios para tener datos en la BBDD. Se ejecutará automáticamente al arrancar el servicio.
