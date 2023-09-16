@@ -108,7 +108,6 @@ class SuperHeroeServiceTest {
 	
 	@Test()
 	void findAllSuperHeroesByParamTest() throws ValidationException {
-
         // Configurar comportamiento de los mocks
         when(superHeroeRepository.findAll()).thenReturn(Datos.SUPERHEROES); 
         when(utilsMapper.superHeroeEntitiesToDtos(anyList())).thenReturn(Datos.SUPERHEROESDTO);

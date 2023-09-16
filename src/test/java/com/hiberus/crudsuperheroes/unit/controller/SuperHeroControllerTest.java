@@ -61,7 +61,6 @@ public class SuperHeroControllerTest {
         utilsMapper = new UtilsMapper();
     }
 	
-    
 	@Test()
 	void getAllSuperHeroesTest() throws JsonProcessingException, Exception {
    

@@ -54,7 +54,6 @@ public class IntegracionJpaTest {
 
         // Given
         SuperHeroe superHeroeShiala = new SuperHeroe(69L, "Shaila", "Reñir mucho.",null);
-
         // When
         SuperHeroe superHeroe = superHeroeRepository.save(superHeroeShiala);
 

@@ -35,7 +35,6 @@ class ValidarDatosServiceTest {
 		SuperHeroeRequest superHeroeRequest = SuperHeroeRequest.builder().nombre(null).superPoder("Hablar muy rápido").build();
         assertThrows(ValidationException.class, () -> validarDatos.validarDatosUpdateSuperHeroe(superHeroeRequest));
   
-        
 	}
 	
 	@Test()

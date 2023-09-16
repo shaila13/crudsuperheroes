@@ -83,6 +83,7 @@ class SuperHeroeDeleteServiceTest {
 		}catch (SuperHeroeNotFoundException es) {
 			assertTrue(es instanceof SuperHeroeNotFoundException);
 		}
+		
 	}
 
 }

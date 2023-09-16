@@ -63,7 +63,6 @@ class SuperHeroeUpdateServiceTest {
 		
         when(superHeroeRepository.saveAndFlush(any())).thenReturn(superHeroe);
 
-		
         // Crear instancia del servicio con los mocks
 		superHeroeUpdateService = new SuperHeroeUpdateServiceImpl(superHeroeRepository, validarDatos);
         
@@ -78,8 +77,6 @@ class SuperHeroeUpdateServiceTest {
         verify(validarDatos, times(1)).validarDatosUpdateSuperHeroe(superHeroeRequest);
         verify(superHeroeRepository, times(1)).findById(ID);
         verify(superHeroeRepository, times(1)).saveAndFlush(superHeroe);
-		
-        
 
 	}
 
