@@ -1,5 +1,7 @@
 package com.hiberus.crudsuperheroes.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class SuperHeroeController {
 	private SuperHeroeUpdateService superHeroeUpdateService;
 
 	@GetMapping("/superheroes")
-	public ResponseEntity<SuperHeroeResponse> getAllSuperHeroes() {
+	public ResponseEntity<Optional<SuperHeroeResponse>> getAllSuperHeroes() {
 		return ResponseEntity.ok(superHeroeService.getAllSuperHeroes());
 	}
 
@@ -57,7 +59,7 @@ public class SuperHeroeController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) {
 		superHeroeDeleteService.deleteSuperHeroeById(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.accepted().build();
 	}
 
 }

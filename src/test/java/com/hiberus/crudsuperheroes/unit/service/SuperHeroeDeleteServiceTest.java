@@ -1,7 +1,10 @@
-package com.hiberus.crudsuperheroes.service;
+package com.hiberus.crudsuperheroes.unit.service;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -11,7 +14,6 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,6 +21,7 @@ import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
+import com.hiberus.crudsuperheroes.service.ValidarDatosService;
 import com.hiberus.crudsuperheroes.service.impl.SuperHeroeDeleteServiceImpl;
 
 @SpringBootTest
@@ -29,7 +32,7 @@ class SuperHeroeDeleteServiceTest {
 	@Mock
 	private SuperHeroeRepository superHeroeRepository;
 	@Mock
-	private IValidarDatosService validarDatos;
+	private ValidarDatosService validarDatos;
 
 	@Before
 	public void init() {
@@ -40,8 +43,8 @@ class SuperHeroeDeleteServiceTest {
 
 	@Test()
 	void whenFindByIdThrowsExceptionShouldThrowSuperHeroeNotFoundException() throws ValidationException {
-		Mockito.doNothing().when(validarDatos).validarIdSuperHeroe(any(Long.class));
-		Mockito.doThrow(new SuperHeroeNotFoundException(ID)).when(superHeroeRepository).findById(any(Long.class));
+		doNothing().when(validarDatos).validarIdSuperHeroe(any(Long.class));
+		doThrow(new SuperHeroeNotFoundException(ID)).when(superHeroeRepository).findById(any(Long.class));
 		try {
 			superHeroeDeleteService.deleteSuperHeroeById(ID);
 		} catch (SuperHeroeNotFoundException e) {
@@ -54,9 +57,9 @@ class SuperHeroeDeleteServiceTest {
 	void whenGivenIdShouldDeleteSuperHeroeIfFound() {
 		SuperHeroe result = SuperHeroe.builder().nombre("Test").superPoder("Test").idSuperHeroe(ID).build();
 		try {
-			Mockito.doNothing().when(validarDatos).validarIdSuperHeroe(any(Long.class));
-			Mockito.doReturn(Optional.ofNullable(result)).when(superHeroeRepository).findById(any(Long.class));
-			Mockito.doNothing().when(superHeroeRepository).deleteById(any(Long.class));
+			doNothing().when(validarDatos).validarIdSuperHeroe(any(Long.class));
+			doReturn(Optional.ofNullable(result)).when(superHeroeRepository).findById(any(Long.class));
+			doNothing().when(superHeroeRepository).deleteById(any(Long.class));
 			superHeroeDeleteService.deleteSuperHeroeById(ID);
 			verify(validarDatos, times(1)).validarIdSuperHeroe(any(Long.class));
 			verify(superHeroeRepository, times(1)).findById(any(Long.class));
@@ -71,7 +74,7 @@ class SuperHeroeDeleteServiceTest {
 	@Test
 	void shouldThrowExceptionWhenSuperHeroeDoesntExist(){
 		try {
-			Mockito.doThrow(new ValidationException()).when(validarDatos).validarIdSuperHeroe(any(Long.class));
+			doThrow(new ValidationException()).when(validarDatos).validarIdSuperHeroe(any(Long.class));
 			superHeroeDeleteService.deleteSuperHeroeById(ID);
 			verify(validarDatos, times(1)).validarIdSuperHeroe(any(Long.class));
 			verify(superHeroeRepository, times(0)).findById(any(Long.class));

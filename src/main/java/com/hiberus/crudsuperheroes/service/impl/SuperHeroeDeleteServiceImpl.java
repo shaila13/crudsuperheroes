@@ -7,7 +7,7 @@ import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
-import com.hiberus.crudsuperheroes.service.IValidarDatosService;
+import com.hiberus.crudsuperheroes.service.ValidarDatosService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService {
 	SuperHeroeRepository superHeroeRepository;
 
 	@Autowired
-	IValidarDatosService validarDatos;
+	ValidarDatosService validarDatos;
 
 	@Override
 	public String deleteSuperHeroeById(Long id) {
