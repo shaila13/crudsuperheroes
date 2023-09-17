@@ -2,6 +2,8 @@ package com.hiberus.crudsuperheroes.controller;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
@@ -21,7 +23,6 @@ import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
-import com.hiberus.crudsuperheroes.service.impl.SuperHeroeServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/v1")
 public class SuperHeroeController {
 
+	
 	@Autowired
 	private SuperHeroeService superHeroeService;
 
@@ -47,7 +49,6 @@ public class SuperHeroeController {
 	@Cacheable("user")
 	@GetMapping("/superheroe/{id}")
 	public ResponseEntity<SuperHeroeResponse> getSuperHeroesById(@PathVariable("id") Long id) {
-		log.debug("Probando caché.");
 		return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
 	}
 

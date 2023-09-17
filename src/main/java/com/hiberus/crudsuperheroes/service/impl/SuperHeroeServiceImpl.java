@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SuperHeroeServiceImpl implements SuperHeroeService {
  
+
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	
 	private final ValidarDatosService validarDatos;
     private final SuperHeroeRepository superHeroeRepository;
     private final UtilsMapper utilsMapper;
@@ -47,6 +52,7 @@ public class SuperHeroeServiceImpl implements SuperHeroeService {
 
 	@Override
 	public SuperHeroeResponse getSuperHeroesById(Long id) {
+		LOGGER.debug("Probando caché.");
 		try {
 			validarDatos.validarIdSuperHeroe(id);
 		} catch (ValidationException e) {
