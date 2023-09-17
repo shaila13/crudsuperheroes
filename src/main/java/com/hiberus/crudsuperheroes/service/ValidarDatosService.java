@@ -3,7 +3,7 @@ package com.hiberus.crudsuperheroes.service;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
 
-public interface IValidarDatosService {
+public interface ValidarDatosService {
 
 	/**
 	 * Se validan los datos Super Heroe.

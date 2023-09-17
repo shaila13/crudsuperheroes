@@ -15,7 +15,7 @@ import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.mapper.UtilsMapper;
 import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
-import com.hiberus.crudsuperheroes.service.IValidarDatosService;
+import com.hiberus.crudsuperheroes.service.ValidarDatosService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,16 +23,16 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class SuperHeroeUpdateServiceImpl implements SuperHeroeUpdateService {
+	
+	private final ValidarDatosService validarDatos;
+    private final SuperHeroeRepository superHeroeRepository; 
 
-	@Autowired
-	SuperHeroeRepository superHeroeRepository;
+    public SuperHeroeUpdateServiceImpl(SuperHeroeRepository superHeroeRepository, ValidarDatosService validarDatos) {
+        this.superHeroeRepository = superHeroeRepository; 
+        this.validarDatos = validarDatos;
+    }
 
-	@Autowired
-	UtilsMapper utilsMapper;
-
-	@Autowired
-	IValidarDatosService validarDatos;
-
+	
 	@Override
 	@Transactional
 	public boolean updateSuperHeroe(Long id, SuperHeroeRequest superHeroeRequest) {

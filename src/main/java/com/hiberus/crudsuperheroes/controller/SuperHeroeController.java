@@ -1,6 +1,9 @@
 package com.hiberus.crudsuperheroes.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +21,11 @@ import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
+import com.hiberus.crudsuperheroes.service.impl.SuperHeroeServiceImpl;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class SuperHeroeController {
@@ -33,12 +40,14 @@ public class SuperHeroeController {
 	private SuperHeroeUpdateService superHeroeUpdateService;
 
 	@GetMapping("/superheroes")
-	public ResponseEntity<SuperHeroeResponse> getAllSuperHeroes() {
+	public ResponseEntity<Optional<SuperHeroeResponse>> getAllSuperHeroes() {
 		return ResponseEntity.ok(superHeroeService.getAllSuperHeroes());
 	}
 
+	@Cacheable("user")
 	@GetMapping("/superheroe/{id}")
 	public ResponseEntity<SuperHeroeResponse> getSuperHeroesById(@PathVariable("id") Long id) {
+		log.debug("Probando caché.");
 		return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
 	}
 
@@ -57,7 +66,8 @@ public class SuperHeroeController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) {
 		superHeroeDeleteService.deleteSuperHeroeById(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.accepted().build();
 	}
 
+	
 }

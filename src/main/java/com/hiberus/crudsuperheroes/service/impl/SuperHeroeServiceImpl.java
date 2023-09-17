@@ -2,6 +2,7 @@ package com.hiberus.crudsuperheroes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,8 +14,9 @@ import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
 import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.mapper.UtilsMapper;
+import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
-import com.hiberus.crudsuperheroes.service.IValidarDatosService;
+import com.hiberus.crudsuperheroes.service.ValidarDatosService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,20 +24,25 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class SuperHeroeServiceImpl implements SuperHeroeService {
+ 
+	private final ValidarDatosService validarDatos;
+    private final SuperHeroeRepository superHeroeRepository;
+    private final UtilsMapper utilsMapper;
 
-	@Autowired
-	SuperHeroeRepository superHeroeRepository;
+    public SuperHeroeServiceImpl(SuperHeroeRepository superHeroeRepository, UtilsMapper utilsMapper,ValidarDatosService validarDatos) {
+        this.superHeroeRepository = superHeroeRepository;
+        this.utilsMapper = utilsMapper;
+        this.validarDatos = validarDatos;
+    }
 
-	@Autowired
-	UtilsMapper utilsMapper;
-
-	@Autowired
-	IValidarDatosService validarDatos;
 
 	@Override
-	public SuperHeroeResponse getAllSuperHeroes() {
-		return SuperHeroeResponse.builder()
-				.superHeroList(utilsMapper.superHeroeEntitiesToDtos(superHeroeRepository.findAll())).build();
+	public Optional<SuperHeroeResponse> getAllSuperHeroes() {
+ 
+    Optional<SuperHeroeResponse> superHeroResponseOptional = Optional.of(SuperHeroeResponse.builder()
+    		.superHeroList(utilsMapper.superHeroeEntitiesToDtos(superHeroeRepository.findAll())).build());
+    
+		return Optional.of(superHeroResponseOptional.orElseThrow(() -> new SuperHeroeNotFoundException()));
 	}
 
 	@Override
@@ -52,7 +59,7 @@ public class SuperHeroeServiceImpl implements SuperHeroeService {
 	}
 
 	@Override
-	public SuperHeroeResponse getSuperHeroesByParam(String param) {
+	public SuperHeroeResponse  getSuperHeroesByParam(String param) {
 		try {
 			validarDatos.validarParametroBusquedaSuperHeroe(param);
 		} catch (ValidationException e) {
