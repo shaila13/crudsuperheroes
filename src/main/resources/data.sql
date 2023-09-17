@@ -8,7 +8,7 @@ insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Supergirl','Sup
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Wonder Woman','Diosa o una amazona con poderes miticos', NOW());
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('El Violin Blanco','Manipula a su antojo el sonido y las ondas sonicas', NOW());
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('She-Hulk','Invulnerabilidad. Longevidad. Factor de curacion acelerado. Capacidad de respirar bajo el agua, respirar en el espacio y ver fantasmas y otras entidades astrales.', NOW());
-insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Chica Ardilla','Fuerza, Movilidad y Resistencia sobrehumanos. Empadia de ardilla.Metabolismo mejorado. Garras. Cola prensil. Hibernación. Sentidos sobrehumanos. También puede ver en la oscuridad.', NOW());
+insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Chica Ardilla','Fuerza, Movilidad y Resistencia sobrehumanos. Empadia de ardilla.Metabolismo mejorado. Garras. Cola prensil. Hibernaciï¿½n. Sentidos sobrehumanos. Tambiï¿½n puede ver en la oscuridad.', NOW());
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Superman','Super fuerza, velocidad, resistencia, agilidad, reflejos, durabilidad, sentidos y longevidad. Super Audicion.', NOW());
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Capitan America','Sentidos, agilidad, velocidad y fuerza sobrehumanas. Gran habilidad con su escudo. Instinto de liderazgo, gran resistencia, inmune a gases y enfermedades, curacion y regeneracion acelerada.', NOW());
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Spider-Man','Fuerza, velocidad, durabilidad, agilidad, sentidos, reflejos, coordinacion, equilibrio y resistencia sobrehumanos', NOW());
@@ -20,3 +20,5 @@ insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Daredevil','Sus
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Black Panther','Velocidad, fuerza, agilidad, capacidad de curacion, resistencia y sentidos agudos', NOW());
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Doctor Strange','Teletransportacion, generacion de ilusiones, proyeccion de energia', NOW());
 insert into SUPER_HERO (NOMBRE,SUPER_PODER,CREATION_DATE)values('Silver Surfer','Agilidad, fuerza y reflejos sobrehumanos. Piel plateada casi impenetrable. Absorber energia cosmica de gran potencia. Rastrear pequeÃ±os objetos perdidos en el espacio', NOW());
+
+insert into USUARIO (NOMBRE,EMAIL,PASSWORD)values('Shaila','shailaperezfernandez@gmail.com','$2a$10$.8Nafm1ZX36lIR/IXOMJfewBU7H5eDIOGZL5opW9pN.HijE0QFr2O');
