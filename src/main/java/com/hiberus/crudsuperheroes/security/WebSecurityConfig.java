@@ -13,13 +13,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import lombok.AllArgsConstructor;
+import com.hiberus.crudsuperheroes.controller.SuperHeroeController;
 
- 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 @AllArgsConstructor
 public class WebSecurityConfig {
- 	
+	
+	@Value("${security.pass}")
+ 	private static String pass;
 	private final UserDetailsService userDetailsService;
 	private final JwtAuthorizationFilter jwtAuthorizationFilter;
 	
@@ -32,7 +37,7 @@ public class WebSecurityConfig {
     	jwtAuthenticationFilter.setFilterProcessesUrl("/login");
     	
     	return http.csrf().disable()
-		.authorizeRequests()/*.antMatchers(h2ConsolePath + "/**").permitAll()*/
+		.authorizeRequests()
 		.anyRequest()
 		.authenticated()
 		.and()
@@ -47,17 +52,6 @@ public class WebSecurityConfig {
 
     }
 
-    
-//    @Bean
-//    UserDetailsService userDetailsService(){
-//    	InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-//    	manager.createUser(User.withUsername("admin")
-//    	    	.password(passwordEncoder().encode("admin"))
-//    	    	.roles().build());
-//
-//    	return manager;
-//    }
-// 
     @Bean
     AuthenticationManager authenticationManager(PasswordEncoder passwordEncoder ,HttpSecurity http ) throws Exception{
 
@@ -71,9 +65,9 @@ public class WebSecurityConfig {
     	return new BCryptPasswordEncoder();
     }
     
+    
 	public static void main(String[] args) {
-		System.out.println("pass "+new BCryptPasswordEncoder().encode("shailaperezfernandez"));
+        log.error("pass ",new BCryptPasswordEncoder().encode(pass));
 	}
-
     
 }

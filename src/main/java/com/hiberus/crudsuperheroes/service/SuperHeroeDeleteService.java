@@ -1,5 +1,7 @@
 package com.hiberus.crudsuperheroes.service;
 
+import com.hiberus.crudsuperheroes.exception.ValidationException;
+
 public interface SuperHeroeDeleteService {
 
 	/**
@@ -7,7 +9,8 @@ public interface SuperHeroeDeleteService {
 	 * 
 	 * @param id
 	 * @return
+	 * @throws ValidationException 
 	 */
-	String deleteSuperHeroeById(Long id);
+	String deleteSuperHeroeById(Long id) throws ValidationException;
 
 }

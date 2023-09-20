@@ -2,8 +2,9 @@ package com.hiberus.crudsuperheroes.service;
 
 
 import java.util.Optional;
- 
+
 import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
+import com.hiberus.crudsuperheroes.exception.ValidationException;
 
 public interface SuperHeroeService {
 
@@ -20,12 +21,12 @@ public interface SuperHeroeService {
 	 * @param id
 	 * @return SuperHeroeResponse
 	 */
-	SuperHeroeResponse getSuperHeroesById(Long id);
+	SuperHeroeResponse getSuperHeroesById(Long id) throws ValidationException;
 
 	 /**
 	  *  Returns a list of superheroes by a param.
 	  * @param param
 	  * @return SuperHeroeResponse
 	  */
-	SuperHeroeResponse getSuperHeroesByParam(String param);
+	SuperHeroeResponse getSuperHeroesByParam(String param) throws ValidationException;
 }

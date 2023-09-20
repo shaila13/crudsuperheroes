@@ -26,7 +26,7 @@ import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.sun.istack.NotNull;
 
 @DataJpaTest
-public class IntegracionJpaTest {
+class IntegracionJpaTest {
 
 	
     @Autowired

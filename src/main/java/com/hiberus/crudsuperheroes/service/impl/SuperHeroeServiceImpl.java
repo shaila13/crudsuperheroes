@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;
@@ -16,7 +16,6 @@ import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
 import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.mapper.UtilsMapper;
-import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.ValidarDatosService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeService;
@@ -51,13 +50,11 @@ public class SuperHeroeServiceImpl implements SuperHeroeService {
 	}
 
 	@Override
-	public SuperHeroeResponse getSuperHeroesById(Long id) {
-		LOGGER.debug("Probando caché.");
-		try {
-			validarDatos.validarIdSuperHeroe(id);
-		} catch (ValidationException e) {
-			log.error("Los datos son obligatorios.", e.getMessage());
-		}
+	@Cacheable("superheroCache")
+	public SuperHeroeResponse getSuperHeroesById(Long id) throws ValidationException{
+ 		
+		validarDatos.validarIdSuperHeroe(id);
+ 
 		List<SuperHeroeDto> superHeroList = new ArrayList<>();
 		superHeroList.add(utilsMapper.superHeroeEntityToDto(
 				superHeroeRepository.findById(id).orElseThrow(() -> new SuperHeroeNotFoundException(id))));
@@ -65,12 +62,10 @@ public class SuperHeroeServiceImpl implements SuperHeroeService {
 	}
 
 	@Override
-	public SuperHeroeResponse  getSuperHeroesByParam(String param) {
-		try {
-			validarDatos.validarParametroBusquedaSuperHeroe(param);
-		} catch (ValidationException e) {
-			log.error("Los datos son obligatorios.", e.getMessage());
-		}
+	public SuperHeroeResponse  getSuperHeroesByParam(String param) throws ValidationException{
+ 
+		validarDatos.validarParametroBusquedaSuperHeroe(param);
+ 
 		return SuperHeroeResponse.builder()
 				.superHeroList(utilsMapper.superHeroeEntitiesToDtos(superHeroeRepository.findAll().stream()
 						.filter(nombre -> StringUtils.containsIgnoreCase(nombre.getNombre(), param))
