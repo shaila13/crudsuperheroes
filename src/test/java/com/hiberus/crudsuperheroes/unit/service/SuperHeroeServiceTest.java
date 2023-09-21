@@ -7,26 +7,24 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
-import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.mapper.UtilsMapper;
 import com.hiberus.crudsuperheroes.model.Datos;
-import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.ValidarDatosService;
 import com.hiberus.crudsuperheroes.service.impl.SuperHeroeServiceImpl;
@@ -45,7 +43,7 @@ class SuperHeroeServiceTest {
 
 	private static final Long ID = 1L;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		MockitoAnnotations.openMocks(this);
 	}

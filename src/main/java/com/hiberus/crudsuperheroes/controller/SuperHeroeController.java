@@ -21,11 +21,8 @@ import com.hiberus.crudsuperheroes.exception.ValidationException;
 import com.hiberus.crudsuperheroes.service.SuperHeroeDeleteService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
-import com.hiberus.crudsuperheroes.service.impl.SuperHeroeServiceImpl;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class SuperHeroeController {
@@ -46,13 +43,12 @@ public class SuperHeroeController {
 
 	@Cacheable("user")
 	@GetMapping("/superheroe/{id}")
-	public ResponseEntity<SuperHeroeResponse> getSuperHeroesById(@PathVariable("id") Long id) {
-		log.debug("Probando caché.");
+	public ResponseEntity<SuperHeroeResponse> getSuperHeroesById(@PathVariable("id") Long id) throws ValidationException {
 		return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
 	}
 
 	@GetMapping("/superheroes/{param}")
-	public ResponseEntity<SuperHeroeResponse> getSuperHeroesByParam(@PathVariable("param") String param) {
+	public ResponseEntity<SuperHeroeResponse> getSuperHeroesByParam(@PathVariable("param") String param) throws ValidationException {
 		return ResponseEntity.ok(superHeroeService.getSuperHeroesByParam(param));
 	}
 

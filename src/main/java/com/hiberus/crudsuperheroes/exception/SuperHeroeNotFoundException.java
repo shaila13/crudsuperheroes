@@ -11,6 +11,10 @@ public class SuperHeroeNotFoundException extends RuntimeException {
 		super("No se ha podido recuperar super heroe con id " + id + ".");
 	}
 
+	public SuperHeroeNotFoundException(String param) {
+		super("No se ha podido recuperar super heroe que contiene " + param + " en su nombre.");
+	}
+	
 	public SuperHeroeNotFoundException() {
 		super("No se ha podido recuperar ningun super heroe.");
 	}

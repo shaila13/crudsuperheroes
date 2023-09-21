@@ -1,17 +1,17 @@
 package com.hiberus.crudsuperheroes.unit.service;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,15 +19,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
-import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
 import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
-import com.hiberus.crudsuperheroes.mapper.UtilsMapper;
-import com.hiberus.crudsuperheroes.model.Datos;
 import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.ValidarDatosService;
-import com.hiberus.crudsuperheroes.service.impl.SuperHeroeServiceImpl;
 import com.hiberus.crudsuperheroes.service.impl.SuperHeroeUpdateServiceImpl;
 
 @SpringBootTest
@@ -43,7 +39,7 @@ class SuperHeroeUpdateServiceTest {
 
 	private static final Long ID = 1L;
 
-	@Before
+	@BeforeEach
 	public void init() {
         // Crear mocks
 		MockitoAnnotations.openMocks(this);

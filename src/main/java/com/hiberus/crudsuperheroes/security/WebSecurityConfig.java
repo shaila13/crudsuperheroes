@@ -1,6 +1,5 @@
 package com.hiberus.crudsuperheroes.security;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,17 +46,7 @@ public class WebSecurityConfig {
 
     }
 
-    
-//    @Bean
-//    UserDetailsService userDetailsService(){
-//    	InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-//    	manager.createUser(User.withUsername("admin")
-//    	    	.password(passwordEncoder().encode("admin"))
-//    	    	.roles().build());
-//
-//    	return manager;
-//    }
-// 
+ 
     @Bean
     AuthenticationManager authenticationManager(PasswordEncoder passwordEncoder ,HttpSecurity http ) throws Exception{
 
@@ -71,9 +60,5 @@ public class WebSecurityConfig {
     	return new BCryptPasswordEncoder();
     }
     
-	public static void main(String[] args) {
-		System.out.println("pass "+new BCryptPasswordEncoder().encode("shailaperezfernandez"));
-	}
-
     
 }

@@ -1,8 +1,6 @@
 package com.hiberus.crudsuperheroes.exception;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 @AllArgsConstructor
 public class ValidationException extends Exception {
