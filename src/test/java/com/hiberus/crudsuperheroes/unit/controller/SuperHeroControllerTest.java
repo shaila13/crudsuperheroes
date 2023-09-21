@@ -36,7 +36,7 @@ import com.hiberus.crudsuperheroes.service.SuperHeroeService;
 import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
 
 @WebMvcTest(SuperHeroeController.class)
-public class SuperHeroControllerTest {
+class SuperHeroControllerTest {
 
 	
     @Autowired
