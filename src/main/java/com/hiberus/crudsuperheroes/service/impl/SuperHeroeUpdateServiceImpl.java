@@ -5,14 +5,11 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hiberus.crudsuperheroes.common.Utils;
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
 import com.hiberus.crudsuperheroes.exception.SuperHeroeNotFoundException;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
-import com.hiberus.crudsuperheroes.mapper.UtilsMapper;
 import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
 import com.hiberus.crudsuperheroes.service.ValidarDatosService;
@@ -35,13 +32,11 @@ public class SuperHeroeUpdateServiceImpl implements SuperHeroeUpdateService {
 	
 	@Override
 	@Transactional
-	public boolean updateSuperHeroe(Long id, SuperHeroeRequest superHeroeRequest) {
-		try {
+	public boolean updateSuperHeroe(Long id, SuperHeroeRequest superHeroeRequest) throws ValidationException {
+ 
 			validarDatos.validarIdSuperHeroe(id);
 			validarDatos.validarDatosUpdateSuperHeroe(superHeroeRequest);
-		} catch (ValidationException e) {
-			log.error("Los datos son obligatorios.", e.getMessage());
-		}
+ 
 		Optional<SuperHeroeRequest> optSuperHeroe = Optional.ofNullable(superHeroeRequest);
 		SuperHeroe superHeroe = superHeroeRepository.findById(id)
 				.orElseThrow(() -> new SuperHeroeNotFoundException(id));

@@ -60,7 +60,7 @@ public class SuperHeroeController {
 
 	@DeleteMapping("/superheroe/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) {
+	public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) throws ValidationException {
 		superHeroeDeleteService.deleteSuperHeroeById(id);
 		return ResponseEntity.accepted().build();
 	}
