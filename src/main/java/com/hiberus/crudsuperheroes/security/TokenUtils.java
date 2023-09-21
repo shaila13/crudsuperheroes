@@ -14,7 +14,7 @@ import io.jsonwebtoken.security.Keys;
 
 public class TokenUtils {
  
-private static final String ACCESS_TOKEN_SECRET = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+private static final String ACCESS_TOKEN_SEC = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 private static final Long ACCESS_TOKEN_VALIDITY_SECONDS = 259200L;
 
@@ -27,12 +27,12 @@ public static String createToken(String nombre, String email) {
 	extra.put("nombre", nombre);
 
 	return Jwts.builder().setSubject(email).setExpiration(expirationDate).addClaims(extra)
-			.signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes())).compact();
+			.signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SEC.getBytes())).compact();
 }
 	
 public static UsernamePasswordAuthenticationToken getAuthentication(String token) {
 	try {
-		Claims claims = Jwts.parserBuilder().setSigningKey(ACCESS_TOKEN_SECRET.getBytes()).build().parseClaimsJws(token)
+		Claims claims = Jwts.parserBuilder().setSigningKey(ACCESS_TOKEN_SEC.getBytes()).build().parseClaimsJws(token)
 				.getBody();
 
 		String email = claims.getSubject();
