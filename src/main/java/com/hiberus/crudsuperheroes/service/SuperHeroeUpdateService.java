@@ -1,7 +1,6 @@
 package com.hiberus.crudsuperheroes.service;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeRequest;
-import com.hiberus.crudsuperheroes.dto.SuperHeroeResponse;
 import com.hiberus.crudsuperheroes.exception.ValidationException;
 
 public interface SuperHeroeUpdateService {

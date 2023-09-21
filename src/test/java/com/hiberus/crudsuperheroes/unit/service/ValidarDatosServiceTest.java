@@ -2,7 +2,7 @@ package com.hiberus.crudsuperheroes.unit.service;
 
 import static org.junit.Assert.assertThrows;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,7 @@ class ValidarDatosServiceTest {
 	@InjectMocks
 	private ValidarDatosServiceImpl validarDatos;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		validarDatos = new ValidarDatosServiceImpl();
 	}

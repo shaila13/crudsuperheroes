@@ -15,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(toBuilder = true)
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SuperHeroeResponse {

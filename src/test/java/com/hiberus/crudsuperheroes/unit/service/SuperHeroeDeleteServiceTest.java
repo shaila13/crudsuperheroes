@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 import java.util.Optional;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -34,7 +34,7 @@ class SuperHeroeDeleteServiceTest {
 	@Mock
 	private ValidarDatosService validarDatos;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		MockitoAnnotations.openMocks(this);
 	}
