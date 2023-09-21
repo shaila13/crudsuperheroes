@@ -23,20 +23,16 @@ public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService {
 	ValidarDatosService validarDatos;
 
 	@Override
-	public String deleteSuperHeroeById(Long id) {
+	public String deleteSuperHeroeById(Long id) throws ValidationException {
 		String mesajeDetele;
-		try {
-			validarDatos.validarIdSuperHeroe(id);
-		} catch (ValidationException e) {
-			log.error("Los datos son obligatorios.", e.getMessage());
 
-		}
+			validarDatos.validarIdSuperHeroe(id);
+
 		SuperHeroe result = superHeroeRepository.findById(id).orElseThrow(() -> new SuperHeroeNotFoundException(id));
 
 		log.info("El super heroe " + result.getNombre() + " va a ser borrado de Base de Datos.");
 
 		superHeroeRepository.deleteById(id);
-		mesajeDetele = "El super heroe " + result.getNombre() + " ha sido borrado de Base de Datos.";
-		return mesajeDetele;
+		return "El super heroe " + result.getNombre() + " ha sido borrado de Base de Datos.";
 	}
 }
