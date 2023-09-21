@@ -7,15 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +17,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.hiberus.crudsuperheroes.model.SuperHeroe;
 import com.hiberus.crudsuperheroes.repository.SuperHeroeRepository;
-import com.sun.istack.NotNull;
 
 @DataJpaTest
-public class IntegracionJpaTest {
+class IntegracionJpaTest {
 
 	
     @Autowired
@@ -69,11 +62,11 @@ public class IntegracionJpaTest {
         assertEquals("Tormenta", superHeroe.getNombre());
 
         superHeroeRepository.delete(superHeroe);
-
+        
         assertThrows(NoSuchElementException.class, () -> {
-
-        	superHeroeRepository.findById(1L).orElseThrow();
+            superHeroeRepository.findById(1L).orElseThrow(() -> new NoSuchElementException("SuperHeroe not found"));
         });
+        
         assertEquals(21, superHeroeRepository.findAll().size());
 		
 	}

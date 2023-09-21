@@ -24,9 +24,7 @@ public class SuperHeroeDeleteServiceImpl implements SuperHeroeDeleteService {
 
 	@Override
 	public String deleteSuperHeroeById(Long id) throws ValidationException {
-		String mesajeDetele;
-
-			validarDatos.validarIdSuperHeroe(id);
+		validarDatos.validarIdSuperHeroe(id);
 
 		SuperHeroe result = superHeroeRepository.findById(id).orElseThrow(() -> new SuperHeroeNotFoundException(id));
 
