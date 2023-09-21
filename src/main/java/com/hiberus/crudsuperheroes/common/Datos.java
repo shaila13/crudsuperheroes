@@ -1,4 +1,4 @@
-package com.hiberus.crudsuperheroes.model;
+package com.hiberus.crudsuperheroes.common;
 
 
 import java.util.Arrays;
@@ -6,10 +6,15 @@ import java.util.List;
 import java.util.Optional;
 
 import com.hiberus.crudsuperheroes.dto.SuperHeroeDto;
+import com.hiberus.crudsuperheroes.model.SuperHeroe;
 
 
 public class Datos {
 
+	private Datos() {
+
+	}
+	
 	private static String nombreSuperHeroe="Tormenta";
 	private static String superPoder="Capaz de dominar el clima, las precipitaciones y la electricidad del ambiente.";
 	
