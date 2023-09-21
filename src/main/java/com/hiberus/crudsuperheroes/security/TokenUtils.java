@@ -14,6 +14,9 @@ import io.jsonwebtoken.security.Keys;
 
 public class TokenUtils {
  
+	private TokenUtils() {
+
+	}
 private static final String ACCESS_TOK_SEC = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
 private static final Long ACCESS_TOKEN_VALIDITY_SECONDS = 259200L;
