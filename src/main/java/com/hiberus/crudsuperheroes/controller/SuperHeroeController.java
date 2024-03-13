@@ -27,43 +27,57 @@ import com.hiberus.crudsuperheroes.service.SuperHeroeUpdateService;
 @RequestMapping("/api/v1")
 public class SuperHeroeController {
 
-	@Autowired
-	private SuperHeroeService superHeroeService;
+    @Autowired
+    private SuperHeroeService superHeroeService;
 
-	@Autowired
-	private SuperHeroeDeleteService superHeroeDeleteService;
+    @Autowired
+    private SuperHeroeDeleteService superHeroeDeleteService;
 
-	@Autowired
-	private SuperHeroeUpdateService superHeroeUpdateService;
+    @Autowired
+    private SuperHeroeUpdateService superHeroeUpdateService;
 
-	@GetMapping("/superheroes")
-	public ResponseEntity<Optional<SuperHeroeResponse>> getAllSuperHeroes() {
-		return ResponseEntity.ok(superHeroeService.getAllSuperHeroes());
-	}
+    @GetMapping("/superheroes")
+    public ResponseEntity<Optional<SuperHeroeResponse>> getAllSuperHeroes() {
+        return ResponseEntity.ok(superHeroeService.getAllSuperHeroes());
+    }
 
-	@Cacheable("user")
-	@GetMapping("/superheroe/{id}")
-	public ResponseEntity<SuperHeroeResponse> getSuperHeroesById(@PathVariable("id") Long id) throws ValidationException {
-		return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
-	}
+    @Cacheable("user")
+    @GetMapping("/superheroe/{id}")
+    public ResponseEntity<SuperHeroeResponse> getSuperHeroesById(@PathVariable("id") Long id) {
+        try {
+            return ResponseEntity.ok(superHeroeService.getSuperHeroesById(id));
+        } catch (ValidationException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 
-	@GetMapping("/superheroes/{param}")
-	public ResponseEntity<SuperHeroeResponse> getSuperHeroesByParam(@PathVariable("param") String param) throws ValidationException {
-		return ResponseEntity.ok(superHeroeService.getSuperHeroesByParam(param));
-	}
+    @GetMapping("/superheroes/{param}")
+    public ResponseEntity<SuperHeroeResponse> getSuperHeroesByParam(@PathVariable("param") String param) {
+        try {
+            return ResponseEntity.ok(superHeroeService.getSuperHeroesByParam(param));
+        } catch (ValidationException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 
-	@PutMapping("/superheroe/{id}")
-	public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id,
-			@RequestBody SuperHeroeRequest superHeroeRequest) throws ValidationException {
-		return ResponseEntity.ok(superHeroeUpdateService.updateSuperHeroe(id, superHeroeRequest));
-	}
+    @PutMapping("/superheroe/{id}")
+    public ResponseEntity<Boolean> updateSuperHeroes(@PathVariable("id") Long id,
+            @RequestBody SuperHeroeRequest superHeroeRequest) {
+        try {
+            return ResponseEntity.ok(superHeroeUpdateService.updateSuperHeroe(id, superHeroeRequest));
+        } catch (ValidationException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 
-	@DeleteMapping("/superheroe/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) throws ValidationException {
-		superHeroeDeleteService.deleteSuperHeroeById(id);
-		return ResponseEntity.accepted().build();
-	}
-
-	
+    @DeleteMapping("/superheroe/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> deleteSuperHeroe(@PathVariable("id") Long id) {
+        try {
+            superHeroeDeleteService.deleteSuperHeroeById(id);
+            return ResponseEntity.accepted().build();
+        } catch (ValidationException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
